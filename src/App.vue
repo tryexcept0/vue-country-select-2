@@ -3,11 +3,14 @@
     <h1>Telephone Country Select</h1>
     <h2 style="color: #999">made with &#x2764; by Mon.</h2>
     <div style="margin: 20px auto">
-      <vue-country-code
+      <vue-country-dropdown
         @onSelect="onSelect"
-        :preferredCountries="['vn', 'us', 'gb']"
-        defaultCountry=""
-      ></vue-country-code>
+        :disabledFetchingCountry="true"
+        :defaultCountryByAreaCode="90"
+        :immediateCallSelectEvent="true"
+        :showNotSelectedOption="true"
+        :notSelectedOptionText="'Not Selected'"
+      ></vue-country-dropdown>
     </div>
     <div>
       <code>{{ selectedCountry }}</code>
@@ -16,11 +19,11 @@
 </template>
 
 <script>
-import VueCountryCode from "./components/VueCountryCode";
+import VueCountryDropdown from "./components/VueCountryDropdown";
 export default {
   name: "app",
   components: {
-    VueCountryCode
+    VueCountryDropdown
   },
   data() {
     return {
@@ -30,6 +33,7 @@ export default {
   methods: {
     onSelect(data) {
       this.selectedCountry = data;
+      console.log(this.selectedCountry);
     }
   }
 };

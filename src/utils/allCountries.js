@@ -15,6 +15,7 @@
 //    Area codes
 // ]
 const allCountries = [
+  ["Not Selected", "", ""],
   ["Afghanistan (‫افغانستان‬‎)", "af", "93"],
   ["Albania (Shqipëri)", "al", "355"],
   ["Algeria (‫الجزائر‬‎)", "dz", "213"],
@@ -317,6 +318,6 @@ const allCountries = [
 
 export default allCountries.map(([name, iso2, dialCode]) => ({
   name,
-  iso2: iso2.toUpperCase(),
+  iso2: iso2 && iso2.toUpperCase(),
   dialCode
 }));

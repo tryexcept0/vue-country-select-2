@@ -1,18 +1,19 @@
-# vue-country-code
+
+## This is a forked repository. The original repo is [here.](https://hantrongbinh.github.io/vue-country-code/) I'm just added some new features.
+
+# vue-country-dropdown
 
 Country Code Select with Vue.
-
-Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/).
 
 ## Installation
 
 - **yarn**:
   ```bash
-    yarn add vue-country-code
+    yarn add vue-country-dropdown
   ```
 - **npm**:
   ```bash
-    npm i --save vue-country-code
+    npm i --save vue-country-dropdown
   ```
 
 ## Usage
@@ -21,9 +22,9 @@ Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/
 
   ```javascript
   import Vue from "vue";
-  import VueCountryCode from "vue-country-code";
+  import VueCountryDropdown from "vue-country-dropdown";
 
-  Vue.use(VueCountryCode);
+  Vue.use(VueCountryDropdown);
   ```
 
 - In your component:
@@ -31,11 +32,11 @@ Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/
   ```js
   <template>
   ...
-     <vue-country-code
+     <vue-country-dropdown
                     @onSelect="onSelect"
                     <!-- optional -->
                     :preferredCountries="['vn', 'us', 'gb']">
-     </vue-country-code>
+     </vue-country-dropdown>
   ...
   <template>
   <script>
@@ -57,8 +58,8 @@ Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/
     ```js
   <template>
   ...
-     <vue-country-code
-                    ref="vcc"
+     <vue-country-dropdown
+                    ref="vcd"
                     @onSelect="onSelect"
      </vue-country-code>
      <button @click="manualTrigger">Manual Trigger</button>
@@ -75,7 +76,7 @@ Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/
          console.log(name, iso2, dialCode);
        },
        manualTrigger() {
-         this.$refs.vcc.manualDropdown();
+         this.$refs.vcd.manualDropdown();
        }
     },
   }
@@ -94,6 +95,11 @@ Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/
 | `onlyCountries`           | `Array`   | `[]`                          | List of countries will be shown on the dropdown. ie `['AU', 'BR']`          |
 | `ignoredCountries`        | `Array`   | `[]`                          | List of countries will NOT be shown on the dropdown. ie `['AU', 'BR']`      |
 | `dropdownOptions`         | `Object`  | `{ disabledDialCode: false }` | Options for dropdown, supporting `disabledDialCode`                         |
+| `defaultCountryByAreaCode`         | `Number`  | `0` | Same as default country option. finds the default country from list by area code.|
+| `showNotSelectedOption`         | `Boolean`  | `false` | The `Not Selected` option is added to the top of the list. The Iso2 and area code value are empty.|
+| `notSelectedOptionText`         | `String`  | `Not Selected` | Replace `Not Selected` text with another string.|
+| `immediateCallSelectEvent`         | `Boolean`  | `true` | Call the `onSelect` event when the component is mounted.|
+
 
 ### Events
 
@@ -103,6 +109,7 @@ Checkout Demo at [Github pages](https://hantrongbinh.github.io/vue-country-code/
 
 ## Highlights & Credits
 
+- Original repository [hantrongbinh/vue-country-code](https://hantrongbinh.github.io/vue-country-code/).
 - Forked from [EducationLink/vue-tel-input](https://github.com/EducationLink/vue-tel-input).
 - Vue app created by [vue-cli](https://github.com/vuejs/vue-cli).
 - Telephone Number parsing, validation by [libphonenumber-js](https://catamphetamine.github.io/libphonenumber-js/).
@@ -126,3 +133,4 @@ $ yarn/npm build
 ```
 
 Made by [Mon](https://github.com/hantrongbinh).
+Forked and updated by [Ahmet ALTUN](https://github.com/ahmetaltun).

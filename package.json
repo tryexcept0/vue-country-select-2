@@ -1,13 +1,13 @@
 {
-  "name": "vue-country-code",
-  "version": "1.1.3",
-  "description": "Country Code Select with Vue",
-  "author": "Trong Binh Han <me@hantrongbinh.dev>",
+  "name": "vue-country-dropdown",
+  "version": "2.0.0",
+  "description": "Country Dropdown with Vue",
+  "author": "Ahmet ALTUN <hi@ahmetaltun.dev>",
   "license": "MIT",
-  "homepage": "https://hantrongbinh.github.io/vue-country-code/",
+  "homepage": "https://github.com/ahmetaltun/vue-country-dropdown/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hantrongbinh/vue-country-code.git"
+    "url": "git+https://github.com/ahmetaltun/vue-country-dropdown.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -52,10 +52,13 @@
     "country",
     "vue-country-code",
     "phone code",
-    "country code"
+    "country code",
+    "vue-country-code-select",
+    "country select",
+    "vue country select"
   ],
   "bugs": {
-    "url": "https://github.com/hantrongbinh/vue-country-code/issues"
+    "url": "https://github.com/ahmetaltun/vue-country-dropdown/issues"
   },
   "directories": {
     "doc": "docs"

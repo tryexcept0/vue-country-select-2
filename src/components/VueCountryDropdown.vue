@@ -1,5 +1,8 @@
 <template>
-  <div class="vue-country-select" :class="{ disabled: disabled }">
+  <div
+    class="vue-country-select"
+    :class="{ disabled: disabled }"
+  >
     <div
       class="dropdown"
       @click="toggleDropdown"
@@ -13,14 +16,20 @@
         <div
           v-if="enabledFlags"
           class="vti__flag"
-          :class="activeCountry.iso2.toLowerCase()"
+          :class="activeCountry.iso2 && activeCountry.iso2.toLowerCase()"
         ></div>
-        <span v-if="enabledCountryCode" class="country-code"
-          >+{{ activeCountry.dialCode }}</span
-        >
+        <span
+          v-if="enabledCountryCode"
+          class="country-code"
+          v-text="activeCountry.dialCode && ` +${activeCountry.dialCode}`"
+        ></span>
         <span class="dropdown-arrow">{{ open ? "▲" : "▼" }}</span>
       </span>
-      <ul v-show="open" ref="list" class="dropdown-list">
+      <ul
+        v-show="open"
+        ref="list"
+        class="dropdown-list"
+      >
         <li
           class="dropdown-item"
           v-for="(pb, index) in sortedCountries"
@@ -32,12 +41,13 @@
           <div
             class="vti__flag"
             v-if="enabledFlags"
-            :class="pb.iso2.toLowerCase()"
+            :class="pb.iso2 && pb.iso2.toLowerCase()"
           ></div>
-          <strong>{{ pb.name }}</strong>
-          <span v-if="dropdownOptions && !dropdownOptions.disabledDialCode"
-            >+{{ pb.dialCode }}</span
-          >
+          <strong v-text="pb.name"></strong>
+          <span
+            v-if="dropdownOptions && !dropdownOptions.disabledDialCode"
+            v-text="pb.dialCode && ` +${pb.dialCode}`"
+          ></span>
         </li>
       </ul>
     </div>
@@ -69,6 +79,12 @@ export default {
       type: String,
       default: ""
     },
+    defaultCountryByAreaCode: {
+      // Default country code, ie: 'AU'
+      // Will override the current country of user
+      type: Number,
+      default: 0
+    },
     enabledCountryCode: {
       type: Boolean,
       default: false
@@ -96,11 +112,25 @@ export default {
     selectedCountryCode: {
       type: Boolean,
       default: false
+    },
+    immediateCallSelectEvent: {
+      type: Boolean,
+      default: true
+    },
+    showNotSelectedOption: {
+      type: Boolean,
+      default: false
+    },
+    notSelectedOptionText: {
+      type: String,
+      default: ""
     }
   },
   mounted() {
     this.initializeCountry();
-    this.$emit("onSelect", this.activeCountry);
+    if (this.immediateCallSelectEvent) {
+      this.$emit("onSelect", this.activeCountry);
+    }
   },
   data() {
     return {
@@ -127,6 +157,14 @@ export default {
         );
       }
 
+      /** */
+      if (!this.showNotSelectedOption) {
+        // remove first element
+        allCountries.shift();
+      } else if (this.notSelectedOptionText !== "") {
+        allCountries[0].name = this.notSelectedOptionText;
+      }
+
       return allCountries;
     },
     sortedCountries() {
@@ -140,7 +178,13 @@ export default {
   },
   watch: {
     defaultCountry(newVal) {
+      // check param typei can be string like "TR" or area code like 90
       const defaultCountry = this.findCountry(newVal);
+      this.choose(defaultCountry);
+    },
+    defaultCountryByAreaCode(newVal) {
+      // check param typei can be string like "TR" or area code like 90
+      const defaultCountry = this.findCountryByAreaCode(newVal);
       this.choose(defaultCountry);
     }
   },
@@ -153,6 +197,16 @@ export default {
         const defaultCountry = this.findCountry(this.defaultCountry);
         if (defaultCountry) {
           this.activeCountry = defaultCountry;
+          return;
+        }
+      }
+
+      if (this.defaultCountryByAreaCode) {
+        const defaultCountryByAreaCode = this.findCountryByAreaCode(
+          this.defaultCountryByAreaCode
+        );
+        if (defaultCountryByAreaCode) {
+          this.activeCountry = defaultCountryByAreaCode;
           return;
         }
       }
@@ -181,6 +235,11 @@ export default {
     },
     findCountry(iso = "") {
       return allCountries.find(country => country.iso2 === iso.toUpperCase());
+    },
+    findCountryByAreaCode(areaCode = 0) {
+      return allCountries.find(
+        country => country.dialCode === areaCode.toString()
+      );
     },
     getItemClass(index, iso2) {
       const highlighted = this.selectedIndex === index;
@@ -331,6 +390,9 @@ export default {
 
 <style src="../assets/sprite.css"></style>
 <style>
+body {
+  background-color: #999 !important;
+}
 /* TODO: Find the right way to resolve alias in style block */
 /* @import url("~@/assets/sprite.css"); */
 .vue-country-select {

@@ -1,9 +1,9 @@
-import VueCountryCode from "./components/VueCountryCode.vue";
+import VueCountryDropdown from "./components/VueCountryDropdown.vue";
 
 export default {
-  ...VueCountryCode,
+  ...VueCountryDropdown,
   install: Vue => {
-    Vue.component(VueCountryCode.name, VueCountryCode);
+    Vue.component(VueCountryDropdown.name, VueCountryDropdown);
     return Vue;
   }
 };
