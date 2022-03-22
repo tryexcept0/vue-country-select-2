@@ -21,8 +21,16 @@
         <span
           v-if="enabledCountryCode"
           class="country-code"
+          :style="{ 'width': showNameInput ? 'auto' : '100%' }"
           v-text="activeCountry.dialCode && ` +${activeCountry.dialCode}`"
         ></span>
+        <span
+          v-if="showNameInput"
+          :style="{ 'width': showNameInput ? '100%' : 'auto' }"
+          class="country-name"
+        >
+          {{ activeCountry.name }}
+        </span>
         <span class="dropdown-arrow">{{ open ? "▲" : "▼" }}</span>
       </span>
       <ul
@@ -124,6 +132,10 @@ export default {
     notSelectedOptionText: {
       type: String,
       default: ""
+    },
+    showNameInput: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -390,9 +402,6 @@ export default {
 
 <style src="../assets/sprite.css"></style>
 <style>
-body {
-  background-color: #999 !important;
-}
 /* TODO: Find the right way to resolve alias in style block */
 /* @import url("~@/assets/sprite.css"); */
 .vue-country-select {
@@ -409,7 +418,7 @@ body {
 .vue-country-select .dropdown {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100%;
   padding: 0.5em;
@@ -461,9 +470,15 @@ body {
   font-size: 0.8em;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 .vue-country-select .country-code {
   color: #666;
+  margin-right: 5px;
+}
+.vue-country-select .country-name {
+  color: #000;
+  margin-right: 5px;
 }
 .vue-country-select.disabled .current,
 .vue-country-select.disabled .dropdown {

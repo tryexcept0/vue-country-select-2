@@ -1,6 +1,6 @@
 {
   "name": "vue-country-dropdown",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Country Dropdown with Vue",
   "author": "Ahmet ALTUN <hi@ahmetaltun.dev>",
   "license": "MIT",
@@ -18,7 +18,7 @@
   "files": [
     "dist/"
   ],
-  "main": "dist/vue-country-code.js",
+  "main": "dist/vue-country-dropdown.js",
   "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-alias": "^3.0.0",

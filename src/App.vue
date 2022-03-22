@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-    <h1>Telephone Country Select</h1>
-    <h2 style="color: #999">made with &#x2764; by Mon.</h2>
+    <h1 style="color: #000">Telephone Country Select</h1>
+    <h2 style="color: #000">made with &#x2764; by Mon.</h2>
     <div style="margin: 20px auto">
       <vue-country-dropdown
         @onSelect="onSelect"
         :disabledFetchingCountry="true"
         :defaultCountryByAreaCode="90"
         :immediateCallSelectEvent="true"
+        :enabledFlags="true"
+        :enabledCountryCode="true"
+        :showNameInput="true"
         :showNotSelectedOption="true"
         :notSelectedOptionText="'Not Selected'"
       ></vue-country-dropdown>
     </div>
     <div>
-      <code>{{ selectedCountry }}</code>
+      <code style="color: #000">{{ selectedCountry }}</code>
     </div>
   </div>
 </template>
@@ -33,7 +36,6 @@ export default {
   methods: {
     onSelect(data) {
       this.selectedCountry = data;
-      console.log(this.selectedCountry);
     }
   }
 };

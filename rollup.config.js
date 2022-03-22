@@ -17,7 +17,7 @@ export default {
   output: {
     exports: "named",
     name: "VueCountryCode",
-    file: "dist/vue-country-code.js",
+    file: "dist/vue-country-dropdown.js",
     format: "umd"
   },
   plugins: [
