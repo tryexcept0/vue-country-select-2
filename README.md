@@ -85,21 +85,21 @@ Country Code Select with Vue.
 
 ### Props
 
-| Property value            | Type      | Default value                 | Description                                                                 |
-| ------------------------- | --------- | ----------------------------- | --------------------------------------------------------------------------- |
-| `defaultCountry`          | `string`  | `''`                          | Default country, will override the country fetched from IP address of user |
-| `disabledFetchingCountry` | `Boolean` | false                         | Disable fetching current country based on IP address of user |
-| `enabledFlags`            | `Boolean` | `true`                        | Enable flags in the input |
-| `enabledCountryCode`      | `Boolean` | `false`                       | Enable country code in the input |
-| `showNameInput`         | `Boolean`  | `false` | Shows the name of the selected country |
-| `preferredCountries`      | `Array`   | `[]`                          | Preferred countries list, will be on top of the dropdown. ie `['AU', 'BR']` |
-| `onlyCountries`           | `Array`   | `[]`                          | List of countries will be shown on the dropdown. ie `['AU', 'BR']` |
-| `ignoredCountries`        | `Array`   | `[]`                          | List of countries will NOT be shown on the dropdown. ie `['AU', 'BR']` |
-| `dropdownOptions`         | `Object`  | `{ disabledDialCode: false }` | Options for dropdown, supporting `disabledDialCode` |
-| `defaultCountryByAreaCode`         | `Number`  | `0` | Same as default country option. finds the default country from list by area code. |
-| `showNotSelectedOption`         | `Boolean`  | `false` | The `Not Selected` option is added to the top of the list. The Iso2 and area code value are empty. |
-| `notSelectedOptionText`         | `String`  | `Not Selected` | Replace `Not Selected` text with another string. |
-| `immediateCallSelectEvent`         | `Boolean`  | `true` | Call the `onSelect` event when the component is mounted. |
+| Property value             | Type      | Default value                 | Description                                                                                        |
+| -------------------------- | --------- | ----------------------------- | -------------------------------------------------------------------------------------------------- |
+| `defaultCountry`           | `string`  | `''`                          | Default country, will override the country fetched from IP address of user                         |
+| `disabledFetchingCountry`  | `Boolean` | false                         | Disable fetching current country based on IP address of user                                       |
+| `enabledFlags`             | `Boolean` | `true`                        | Enable flags in the input                                                                          |
+| `enabledCountryCode`       | `Boolean` | `false`                       | Enable country code in the input                                                                   |
+| `showNameInput`            | `Boolean` | `false`                       | Shows the name of the selected country                                                             |
+| `preferredCountries`       | `Array`   | `[]`                          | Preferred countries list, will be on top of the dropdown. ie `['AU', 'BR']`                        |
+| `onlyCountries`            | `Array`   | `[]`                          | List of countries will be shown on the dropdown. ie `['AU', 'BR']`                                 |
+| `ignoredCountries`         | `Array`   | `[]`                          | List of countries will NOT be shown on the dropdown. ie `['AU', 'BR']`                             |
+| `dropdownOptions`          | `Object`  | `{ disabledDialCode: false }` | Options for dropdown, supporting `disabledDialCode`                                                |
+| `defaultCountryByAreaCode` | `Number`  | `0`                           | Same as default country option. finds the default country from list by area code.                  |
+| `showNotSelectedOption`    | `Boolean` | `false`                       | The `Not Selected` option is added to the top of the list. The Iso2 and area code value are empty. |
+| `notSelectedOptionText`    | `String`  | `Not Selected`                | Replace `Not Selected` text with another string.                                                   |
+| `immediateCallSelectEvent` | `Boolean` | `true`                        | Call the `onSelect` event when the component is mounted.                                           |
 
 
 ### Events
