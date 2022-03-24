@@ -20,11 +20,22 @@ Country Code Select with Vue.
 
 - Install as a global component:
 
-  ```javascript
+  ```js
   import Vue from "vue";
   import VueCountryDropdown from "vue-country-dropdown";
 
   Vue.use(VueCountryDropdown);
+  ```
+- Or use in a specific component
+
+  ```js
+  import VueCountryDropdown from 'vue-country-dropdown'
+
+  export default {
+    components: {
+      VueCountryDropdown
+    }
+  }
   ```
 
 - In your component:
@@ -32,19 +43,23 @@ Country Code Select with Vue.
   ```js
   <template>
   ...
-     <vue-country-dropdown
-                    @onSelect="onSelect"
-                    <!-- optional -->
-                    :preferredCountries="['vn', 'us', 'gb']">
-     </vue-country-dropdown>
+    <vue-country-dropdown
+      @onSelect="onSelect"
+      <!-- example props -->
+      :preferredCountries="['TR', 'US', 'GB']">
+      :disabledFetchingCountry="true"
+      :defaultCountryByAreaCode="90"
+      :immediateCallSelectEvent="true"
+      :enabledFlags="true"
+      :enabledCountryCode="true"
+      :showNameInput="true"
+      :showNotSelectedOption="true"
+      :notSelectedOptionText="'Not Selected'"
+    </vue-country-dropdown>
   ...
   <template>
   <script>
   export default {
-    data() {
-      return {
-      };
-    },
     methods: {
        onSelect({name, iso2, dialCode}) {
          console.log(name, iso2, dialCode);
@@ -55,22 +70,18 @@ Country Code Select with Vue.
   ```
 
 - Manual Trigger:
-    ```js
+  ```js
   <template>
   ...
-     <vue-country-dropdown
-                    ref="vcd"
-                    @onSelect="onSelect"
-     </vue-country-code>
-     <button @click="manualTrigger">Manual Trigger</button>
+    <vue-country-dropdown
+      ref="vcd"
+      @onSelect="onSelect"
+    </vue-country-dropdown>
+    <button @click="manualTrigger">Manual Trigger</button>
   ...
   <template>
   <script>
   export default {
-    data() {
-      return {
-      };
-    },
     methods: {
        onSelect({name, iso2, dialCode}) {
          console.log(name, iso2, dialCode);
