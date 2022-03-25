@@ -1,10 +1,14 @@
 
-### This is a forked repository. The original repo is [here.](https://hantrongbinh.github.io/vue-country-code/) I'm just added some new features.
+#### This is a forked repository. The original repo is [here.](https://hantrongbinh.github.io/vue-country-code/) I'm just added some new features.
 
-# vue-country-dropdown
+# Vue Country Dropdown
 
-Country Code Select with Vue.
+Country selection dropdown for vue 2.
 
+## Demo
+```bash
+https://vue-country-dropdown.deta.dev/
+```
 ## Installation
 
 - **yarn**:
