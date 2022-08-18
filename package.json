@@ -1,10 +1,10 @@
 {
   "name": "vue-country-dropdown",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Country Dropdown with Vue",
   "author": "Ahmet ALTUN <hi@ahmetaltun.dev>",
   "license": "MIT",
-  "homepage": "https://github.com/ahmetaltun/vue-country-dropdown/",
+  "homepage": "https://country-dropdown-nuxt-demo.pages.dev/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahmetaltun/vue-country-dropdown.git"

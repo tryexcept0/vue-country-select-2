@@ -7,7 +7,7 @@ Country selection dropdown for vue 2.
 
 ## Demo
 ```bash
-https://vue-country-dropdown.deta.dev/
+https://country-dropdown-nuxt-demo.pages.dev/
 ```
 ## Installation
 
