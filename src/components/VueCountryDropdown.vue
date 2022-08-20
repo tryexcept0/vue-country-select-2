@@ -188,7 +188,6 @@ export default {
       return [...preferredCountries, ...this.filteredCountries];
     }
   },
-  /*
   watch: {
     defaultCountry(newVal) {
       // check param typei can be string like "TR" or area code like 90
@@ -201,7 +200,6 @@ export default {
       this.choose(defaultCountry);
     }
   },
-  */
   methods: {
     initializeCountry() {
       /**
