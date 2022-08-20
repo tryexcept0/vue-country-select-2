@@ -16,20 +16,20 @@
         <div
           v-if="enabledFlags"
           class="vti__flag"
-          :class="activeCountry.iso2 && activeCountry.iso2.toLowerCase()"
+          :class="activeCountry && activeCountry.iso2 ? activeCountry.iso2.toLowerCase() : null"
         ></div>
         <span
           v-if="enabledCountryCode"
           class="country-code"
           :style="{ 'width': showNameInput ? 'auto' : '100%' }"
-          v-text="activeCountry.dialCode && ` +${activeCountry.dialCode}`"
+          v-text="activeCountry && activeCountry.dialCode ? ` +${activeCountry.dialCode}` : null"
         ></span>
         <span
           v-if="showNameInput"
           :style="{ 'width': showNameInput ? '100%' : 'auto' }"
           class="country-name"
         >
-          {{ activeCountry.name }}
+          {{ activeCountry && activeCountry.name ? activeCountry.name : null }}
         </span>
         <span class="dropdown-arrow">{{ open ? "▲" : "▼" }}</span>
       </span>
