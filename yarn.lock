@@ -1578,10 +1578,10 @@
     "postcss" "^8.1.10"
     "source-map" "^0.6.1"
 
-"@vue/compiler-sfc@2.7.9":
-  "integrity" "sha512-TD2FvT0fPUezw5RVP4tfwTZnKHP0QjeEUb39y7tORvOJQTjbOuHJEk4GPHUPsRaTeQ8rjuKjntyrYcEIx+ODxg=="
-  "resolved" "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-2.7.9.tgz"
-  "version" "2.7.9"
+"@vue/compiler-sfc@2.7.14":
+  "integrity" "sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA=="
+  "resolved" "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-2.7.14.tgz"
+  "version" "2.7.14"
   dependencies:
     "@babel/parser" "^7.18.4"
     "postcss" "^8.4.14"
@@ -3105,10 +3105,10 @@
     "browserslist" "^4.21.3"
     "semver" "7.0.0"
 
-"core-js@^3.24.1", "core-js@^3.6.5":
-  "integrity" "sha512-0QTBSYSUZ6Gq21utGzkfITDylE8jWC9Ne1D2MrhvlsZBI1x39OdDIVbzSqtgMndIy6BlHxBXpMGqzZmnztg2rg=="
-  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.24.1.tgz"
-  "version" "3.24.1"
+"core-js@^3.26.1", "core-js@^3.6.5":
+  "integrity" "sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.26.1.tgz"
+  "version" "3.26.1"
 
 "core-util-is@~1.0.0", "core-util-is@1.0.2":
   "integrity" "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac="
@@ -9698,10 +9698,10 @@
     "hash-sum" "^1.0.2"
     "loader-utils" "^1.0.2"
 
-"vue-template-compiler@*", "vue-template-compiler@^2.0.0", "vue-template-compiler@^2.7.9":
-  "integrity" "sha512-NPJxt6OjVlzmkixYg0SdIN2Lw/rMryQskObY89uAMcM9flS/HrmLK5LaN1ReBTuhBgnYuagZZEkSS6FESATQUQ=="
-  "resolved" "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.7.9.tgz"
-  "version" "2.7.9"
+"vue-template-compiler@*", "vue-template-compiler@^2.0.0", "vue-template-compiler@^2.7.14":
+  "integrity" "sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ=="
+  "resolved" "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz"
+  "version" "2.7.14"
   dependencies:
     "de-indent" "^1.0.2"
     "he" "^1.2.0"
@@ -9711,12 +9711,12 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2 || ^3.0.0-0", "vue@^2.7.9":
-  "integrity" "sha512-GeWCvAUkjzD5q4A3vgi8ka5r9bM6g8fmNmx/9VnHDKCaEzBcoVw+7UcQktZHrJ2jhlI+Zv8L57pMCIwM4h4MWg=="
-  "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.9.tgz"
-  "version" "2.7.9"
+"vue@*", "vue@^2 || ^3.0.0-0", "vue@^2.7.14":
+  "integrity" "sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ=="
+  "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.14.tgz"
+  "version" "2.7.14"
   dependencies:
-    "@vue/compiler-sfc" "2.7.9"
+    "@vue/compiler-sfc" "2.7.14"
     "csstype" "^3.1.0"
 
 "watchpack-chokidar2@^2.0.1":
