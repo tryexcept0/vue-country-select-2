@@ -1,23 +1,18 @@
+#### This is a forked repository. The original repo is [here.](https://github.com/ahmetaltun/vue-country-dropdown) I'm just added some new features.
 
-#### This is a forked repository. The original repo is [here.](https://hantrongbinh.github.io/vue-country-code/) I'm just added some new features.
-
-# Vue Country Dropdown
+# Vue Country Select 2
 
 Country selection dropdown for vue 2.
 
-## Demo
-```bash
-https://country-dropdown-nuxt-demo.pages.dev/
-```
 ## Installation
 
 - **yarn**:
   ```bash
-    yarn add vue-country-dropdown
+    yarn add vue-country-select-2
   ```
 - **npm**:
   ```bash
-    npm i --save vue-country-dropdown
+    npm i --save vue-country-select-2
   ```
 
 ## Usage
@@ -26,18 +21,18 @@ https://country-dropdown-nuxt-demo.pages.dev/
 
   ```js
   import Vue from "vue";
-  import VueCountryDropdown from "vue-country-dropdown";
+  import VueCountrySelect from "vue-country-select-2";
 
-  Vue.use(VueCountryDropdown);
+  Vue.use(VueCountrySelect);
   ```
 - Or use in a specific component
 
   ```js
-  import VueCountryDropdown from 'vue-country-dropdown'
+  import VueCountrySelect from 'vue-country-select-2'
 
   export default {
     components: {
-      VueCountryDropdown
+      VueCountrySelect
     }
   }
   ```
@@ -47,7 +42,7 @@ https://country-dropdown-nuxt-demo.pages.dev/
   ```js
   <template>
   ...
-    <vue-country-dropdown
+    <vue-country-select
       @onSelect="onSelect"
       <!-- example props -->
       :preferredCountries="['TR', 'US', 'GB']">
@@ -59,7 +54,7 @@ https://country-dropdown-nuxt-demo.pages.dev/
       :showNameInput="true"
       :showNotSelectedOption="true"
       :notSelectedOptionText="'Not Selected'"
-    </vue-country-dropdown>
+    </vue-country-select>
   ...
   <template>
   <script>
@@ -77,10 +72,10 @@ https://country-dropdown-nuxt-demo.pages.dev/
   ```js
   <template>
   ...
-    <vue-country-dropdown
+    <vue-country-select
       ref="vcd"
       @onSelect="onSelect"
-    </vue-country-dropdown>
+    </vue-country-select>
     <button @click="manualTrigger">Manual Trigger</button>
   ...
   <template>
@@ -115,6 +110,8 @@ https://country-dropdown-nuxt-demo.pages.dev/
 | `showNotSelectedOption`    | `Boolean` | `false`                       | The `Not Selected` option is added to the top of the list. The Iso2 and area code value are empty. |
 | `notSelectedOptionText`    | `String`  | `Not Selected`                | Replace `Not Selected` text with another string.                                                   |
 | `immediateCallSelectEvent` | `Boolean` | `true`                        | Call the `onSelect` event when the component is mounted.                                           |
+| `enablePreferredDivider`   | `Boolean` | `true`                        | Enable divider line under the preferred countries list                                             |
+| `enableSearchCountry`      | `Boolean` | `true`                        | Enable search country by name                                                                      |
 
 
 ### Events
@@ -148,5 +145,4 @@ $ yarn/npm build
 
 ```
 
-Made by [Mon](https://github.com/hantrongbinh).
-Forked and updated by [Ahmet ALTUN](https://github.com/ahmetaltun).
+Forked and updated by [tryexcept0](https://github.com/tryexcept0).

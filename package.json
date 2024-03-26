@@ -1,13 +1,12 @@
 {
-  "name": "vue-country-dropdown",
-  "version": "2.0.8",
-  "description": "Country Dropdown with Vue",
-  "author": "Ahmet ALTUN <hi@ahmetaltun.dev>",
+  "name": "vue-country-select-2",
+  "version": "1.0.0",
+  "description": "Country Select with Vue",
+  "author": "Ivane Chkheidze",
   "license": "MIT",
-  "homepage": "https://country-dropdown-nuxt-demo.pages.dev/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmetaltun/vue-country-dropdown.git"
+    "url": "git+https://github.com/tryexcept0/vue-country-select-2.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -18,7 +17,7 @@
   "files": [
     "dist/"
   ],
-  "main": "dist/vue-country-dropdown.js",
+  "main": "dist/vue-country-select-2.js",
   "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",
@@ -58,9 +57,6 @@
     "vue country select"
   ],
   "bugs": {
-    "url": "https://github.com/ahmetaltun/vue-country-dropdown/issues"
-  },
-  "directories": {
-    "doc": "docs"
+    "url": "https://github.com/tryexcept0/vue-country-select-2/issues"
   }
 }

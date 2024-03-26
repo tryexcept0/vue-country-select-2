@@ -8,9 +8,7 @@
       @click="toggleDropdown"
       v-click-outside="clickedOutside"
       :class="{ open: open }"
-      @keydown="keyboardNav"
       tabindex="0"
-      @keydown.esc="reset"
     >
       <span class="current">
         <div
@@ -33,31 +31,42 @@
         </span>
         <span class="dropdown-arrow">{{ open ? "▲" : "▼" }}</span>
       </span>
-      <ul
+      <span
         v-show="open"
-        ref="list"
-        class="dropdown-list"
-      >
-        <li
-          class="dropdown-item"
-          v-for="(pb, index) in sortedCountries"
-          :key="pb.iso2 + (pb.preferred ? '-preferred' : '')"
-          @click="choose(pb)"
-          :class="getItemClass(index, pb.iso2)"
-          @mousemove="selectedIndex = index"
+        class="dropdown-container">
+        <input
+          v-if="enableSearchCountry"
+          class="dropdown-search-input"
+          ref="input"
+          v-model="searchKey"
+          placeholder="Country Name ..."
+          type="text"
+        />
+        <ul
+          ref="list"
+          class="dropdown-list"
         >
-          <div
-            class="vti__flag"
-            v-if="enabledFlags"
-            :class="pb.iso2 && pb.iso2.toLowerCase()"
-          ></div>
-          <strong v-text="pb.name"></strong>
-          <span
-            v-if="dropdownOptions && !dropdownOptions.disabledDialCode"
-            v-text="pb.dialCode && ` +${pb.dialCode}`"
-          ></span>
-        </li>
-      </ul>
+          <li
+            class="dropdown-item"
+            v-for="(pb, index) in sortedCountries"
+            :key="pb.iso2 + (pb.preferred ? '-preferred' : '')"
+            @click="choose(pb)"
+            :class="getItemClass(index, pb.iso2)"
+            @mousemove="selectedIndex = index"
+          >
+            <div
+              class="vti__flag"
+              v-if="enabledFlags"
+              :class="pb.iso2 && pb.iso2.toLowerCase()"
+            ></div>
+            <strong v-text="pb.name"></strong>
+            <span
+              v-if="dropdownOptions && !dropdownOptions.disabledDialCode"
+              v-text="pb.dialCode && ` +${pb.dialCode}`"
+            ></span>
+          </li>
+        </ul>
+      </span>
     </div>
   </div>
 </template>
@@ -67,7 +76,7 @@ import allCountries from "../utils/allCountries";
 import getCountry from "../utils/defaultCountry";
 
 export default {
-  name: "vue-country-code",
+  name: "vue-country-select",
   props: {
     disabledFetchingCountry: {
       type: Boolean,
@@ -98,6 +107,14 @@ export default {
       default: false
     },
     enabledFlags: {
+      type: Boolean,
+      default: true
+    },
+    enablePreferredDivider: {
+      type: Boolean,
+      default: true
+    },
+    enableSearchCountry: {
       type: Boolean,
       default: true
     },
@@ -151,7 +168,8 @@ export default {
       manualTrigger: false,
       selectedIndex: null,
       typeToFindInput: "",
-      typeToFindTimer: null
+      typeToFindTimer: null,
+      searchKey: ""
     };
   },
   computed: {
@@ -184,8 +202,7 @@ export default {
       const preferredCountries = this.getCountries(
         this.preferredCountries
       ).map(country => ({ ...country, preferred: true }));
-
-      return [...preferredCountries, ...this.filteredCountries];
+      return [...preferredCountries, ...this.filteredCountries.filter(({ iso2 }) => !this.preferredCountries.includes(iso2.toUpperCase()))].filter(country => country.name.toLowerCase().indexOf(this.searchKey.toLowerCase()) >= 0)
     }
   },
   watch: {
@@ -261,19 +278,24 @@ export default {
         .indexOf(iso2);
       return {
         highlighted,
-        "last-preferred": lastPreferred,
+        "last-preferred": lastPreferred && this.enablePreferredDivider,
         preferred
       };
     },
     choose(country) {
       this.activeCountry = country;
       this.$emit("onSelect", this.activeCountry);
+      this.searchKey = "";
     },
-    toggleDropdown() {
+    toggleDropdown(e) {
+      if (e.target.classList.contains('dropdown-search-input')) {
+        return;
+      }
       if (this.disabled) {
         return;
       }
       this.open = !this.open;
+      if (this.open) this.$nextTick(() => { this.$refs.input.focus() })
     },
     // Method to enable programmatic trigger of the dropdown by an element in the DOM
     manualDropdown() {
@@ -281,6 +303,7 @@ export default {
         return;
       }
       this.manualTrigger = true;
+      this.$refs.input.focus()
       this.open = true;
     },
     clickedOutside() {
@@ -290,71 +313,7 @@ export default {
         return;
       }
       this.open = false;
-    },
-    keyboardNav(e) {
-      if (e.keyCode === 40) {
-        // down arrow
-        this.open = true;
-        if (this.selectedIndex === null) {
-          this.selectedIndex = 0;
-        } else {
-          this.selectedIndex = Math.min(
-            this.sortedCountries.length - 1,
-            this.selectedIndex + 1
-          );
-        }
-        let selEle = this.$refs.list.children[this.selectedIndex];
-        if (
-          selEle.offsetTop + selEle.clientHeight >
-          this.$refs.list.scrollTop + this.$refs.list.clientHeight
-        )
-          this.$refs.list.scrollTop =
-            selEle.offsetTop -
-            this.$refs.list.clientHeight +
-            selEle.clientHeight;
-      } else if (e.keyCode === 38) {
-        // up arrow
-        this.open = true;
-        if (this.selectedIndex === null) {
-          this.selectedIndex = this.sortedCountries.length - 1;
-        } else {
-          this.selectedIndex = Math.max(0, this.selectedIndex - 1);
-        }
-        let selEle = this.$refs.list.children[this.selectedIndex];
-        if (selEle.offsetTop < this.$refs.list.scrollTop)
-          this.$refs.list.scrollTop = selEle.offsetTop;
-      } else if (e.keyCode === 13) {
-        // enter key
-        if (this.selectedIndex !== null) {
-          this.choose(this.sortedCountries[this.selectedIndex]);
-        }
-        this.open = !this.open;
-      } else {
-        // typing a country's name
-        this.typeToFindInput += e.key;
-        clearTimeout(this.typeToFindTimer);
-        this.typeToFindTimer = setTimeout(() => {
-          this.typeToFindInput = "";
-        }, 700);
-        // don't include preferred countries so we jump to the right place in the alphabet
-        let typedCountryI = this.sortedCountries
-          .slice(this.preferredCountries.length)
-          .findIndex(c =>
-            c.name.toLowerCase().startsWith(this.typeToFindInput)
-          );
-        if (~typedCountryI) {
-          this.selectedIndex = this.preferredCountries.length + typedCountryI;
-          let selEle = this.$refs.list.children[this.selectedIndex];
-          if (
-            selEle.offsetTop < this.$refs.list.scrollTop ||
-            selEle.offsetTop + selEle.clientHeight >
-              this.$refs.list.scrollTop + this.$refs.list.clientHeight
-          ) {
-            this.$refs.list.scrollTop =
-              selEle.offsetTop - this.$refs.list.clientHeight / 2;
-          }
-        }
-      }
+      this.searchKey = "";
     },
     reset() {
       this.selectedIndex = this.sortedCountries
@@ -431,14 +390,11 @@ export default {
 .vue-country-select .dropdown:hover {
   background-color: #f3f3f3;
 }
-.vue-country-select .dropdown-list {
+.vue-country-select .dropdown-container {
   z-index: 1;
-  padding: 0;
+  padding: 8px 14px;
   margin: 0;
   text-align: left;
-  list-style: none;
-  max-height: 200px;
-  overflow-y: scroll;
   position: absolute;
   top: 100%;
   left: -1px;
@@ -446,9 +402,23 @@ export default {
   border: 1px solid #ccc;
   width: 390px;
 }
+.vue-country-select .dropdown-search-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 4px;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+}
+.vue-country-select .dropdown-list {
+  padding-left: 0;
+  list-style: none;
+  overflow-y: scroll;
+  max-height: 200px;
+}
 .vue-country-select .dropdown-item {
   cursor: pointer;
-  padding: 4px 15px;
+  padding: 4px 0;
 }
 .vue-country-select .dropdown-item .iti-flag {
   display: inline-block;

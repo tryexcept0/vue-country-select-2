@@ -1,19 +1,23 @@
 <template>
   <div id="app">
-    <h1 style="color: #000">Telephone Country Select</h1>
-    <h2 style="color: #000">made with &#x2764; by Mon.</h2>
+    <h1 style="color: #000">Vue Country Select 2</h1>
+    <h2 style="color: #000">made with &#x2764; by Ivane.</h2>
     <div style="margin: 20px auto">
-      <vue-country-dropdown
+      <vue-country-select
         @onSelect="onSelect"
+        :preferredCountries="['IE', 'GB']"
         :disabledFetchingCountry="true"
+        defaultCountry="IE"
         :defaultCountryByAreaCode="90"
         :immediateCallSelectEvent="true"
         :enabledFlags="true"
-        :enabledCountryCode="true"
-        :showNameInput="true"
-        :showNotSelectedOption="true"
+        :enabledCountryCode="false"
+        :enablePreferredDivider="false"
+        :showNameInput="false"
+        :showNotSelectedOption="false"
+        :dropdownOptions="{disabledDialCode: true}"
         :notSelectedOptionText="'Not Selected'"
-      ></vue-country-dropdown>
+      ></vue-country-select>
     </div>
     <div>
       <code style="color: #000">{{ selectedCountry }}</code>
@@ -22,11 +26,11 @@
 </template>
 
 <script>
-import VueCountryDropdown from "./components/VueCountryDropdown";
+import VueCountrySelect from "./components/VueCountrySelect";
 export default {
   name: "app",
   components: {
-    VueCountryDropdown
+    VueCountrySelect
   },
   data() {
     return {
