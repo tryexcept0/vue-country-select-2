@@ -4,7 +4,7 @@
 
 Country selection dropdown for vue 2.
 
-![Uploading vue-country-select-2.png…]()
+![vue-country-select-2](https://github.com/tryexcept0/vue-country-select-2/assets/106856863/fa98ac21-8306-4638-9dd1-8958a67c9dcf)
 
 ## Installation
 
