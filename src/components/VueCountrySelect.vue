@@ -189,8 +189,10 @@ export default {
 
       /** */
       if (!this.showNotSelectedOption) {
-        // remove first element
-        allCountries.shift();
+        const countries = allCountries.slice()
+        // remove first element  
+        countries.shift();
+        return countries
       } else if (this.notSelectedOptionText !== "") {
         allCountries[0].name = this.notSelectedOptionText;
       }
